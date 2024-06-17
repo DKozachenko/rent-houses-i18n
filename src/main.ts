@@ -1,3 +1,5 @@
+/// <reference types="@angular/localize" />
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent, DetailsComponent, HomeComponent } from './components';
 import { Routes, provideRouter } from '@angular/router';

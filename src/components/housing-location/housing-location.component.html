@@ -1,6 +1,15 @@
 <section class="listing">
-  <img class="listing-photo" [src]="housingLocation.photo" alt="Exterior photo of {{housingLocation.name}}">
+  <img
+    class="listing-photo"
+    [src]="housingLocation.photo"
+    i18n-alt="@@housing-location-listing-photo-alt"
+    alt="Exterior photo of {{ housingLocation.name }}"
+  />
   <h2 class="listing-heading">{{ housingLocation.name }}</h2>
-  <p class="listing-location">{{ housingLocation.city}}, {{housingLocation.state }}</p>
-  <a [routerLink]="['/details', housingLocation.id]">Learn More</a>
+  <p class="listing-location">
+    {{ housingLocation.city }}, {{ housingLocation.state }}
+  </p>
+  <a [routerLink]="['/details', housingLocation.id]" i18n="@@learn-more-button"
+    >Learn More</a
+  >
 </section>

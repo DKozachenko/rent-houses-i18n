@@ -8,7 +8,7 @@ const routeConfig: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home page',
+    title: $localize `:@@home-page-title:Home page`,
   },
   {
     path: 'details/:id',

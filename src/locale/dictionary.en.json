@@ -12,6 +12,7 @@
     "apply-form-email": "Email",
     "apply-form-button": " Apply now ",
     "filter-by-city-placeholder": "Filter by city",
+    "filter-by-city-search-button": " Search ",
     "housing-location-listing-photo-alt": "Exterior photo of {$INTERPOLATION}",
     "learn-more-button": "Learn More",
     "home-page-title": "Home page",

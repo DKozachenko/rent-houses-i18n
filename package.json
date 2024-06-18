@@ -5,8 +5,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build"
+    "start:default:localize": "ng serve",
+    "start:localize": "bash ./scripts/start-localize.sh",
+    "build:default:localize": "ng build --localize=false",
+    "build:localize": "bash ./scripts/build-localize.sh",
+    "build:localize:all": "ng build --localize true",
+    "generate:lang:file": "bash ./scripts/generate-lang-file.sh"
   },
   "private": true,
   "dependencies": {

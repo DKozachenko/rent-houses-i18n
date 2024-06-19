@@ -31,5 +31,7 @@ fs.readdir(LOCALES_PATH, (err, fileNames) => {
       console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${DEFAULT_LOCALE_PATH}`);
       process.exit(1);
     }
-  })
+  });
+
+  console.log('Dictionaries are in sync');
 });

@@ -9,8 +9,8 @@ on:
     branches: ['develop']
 
 jobs:
-  create-cache-key:
-    name: Create cache key
+  check-dictionaries:
+    name: Check dictionaries
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code

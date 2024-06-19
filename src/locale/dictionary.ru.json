@@ -12,6 +12,7 @@
     "apply-form-email": "Почта",
     "apply-form-button": " Подать сейчас ",
     "filter-by-city-placeholder": "Фильтр по городу",
+    "filter-by-city-search-button": " Поиск ",
     "housing-location-listing-photo-alt": "Внешнее фото {$INTERPOLATION}",
     "learn-more-button": "Узнать больше",
     "home-page-title": "Главная",

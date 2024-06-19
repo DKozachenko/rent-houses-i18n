@@ -10,7 +10,8 @@
     "build:default:locale": "ng build --localize=false",
     "build:localize": "bash ./scripts/build-localize.sh",
     "build:localize:all": "ng build --localize true",
-    "generate:lang:file": "bash ./scripts/generate-lang-file.sh"
+    "generate:lang:file": "bash ./scripts/generate-lang-file.sh",
+    "check:dictionaries": "node ./scripts/check-dictionaries.js"
   },
   "private": true,
   "dependencies": {

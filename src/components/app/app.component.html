@@ -1,9 +1,13 @@
 <main>
   <a [routerLink]="['/']">
     <header class="brand-name">
+      <!--
+        Use paths without / because of baseHref
+        https://github.com/angular/angular/issues/38299#issuecomment-667132887
+      -->
       <img
         class="brand-logo"
-        src="/assets/logo.svg"
+        src="assets/logo.svg"
         alt="logo"
         aria-hidden="true"
       />

@@ -17,7 +17,9 @@
   padding: 10px 20px 20px 20px;
 }
 .listing-location::before {
-  content: url("/assets/location-pin.svg") / "";
+  // Use relative paths because of baseHref
+  // https://github.com/angular/angular/issues/38299#issuecomment-667132887
+  content: url('../../assets/location-pin.svg') / "";
 }
 
 section.listing a {

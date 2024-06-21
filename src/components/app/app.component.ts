@@ -1,7 +1,6 @@
 import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LANGUAGE } from '../../models';
 
 @Component({
@@ -11,8 +10,6 @@ import { LANGUAGE } from '../../models';
     HomeComponent,
     RouterLink,
     RouterOutlet,
-    FormsModule,
-    ReactiveFormsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

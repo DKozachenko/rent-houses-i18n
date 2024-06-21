@@ -1,6 +1,6 @@
 <main>
-  <a [routerLink]="['/']">
-    <header class="brand-name">
+  <header class="brand-name">
+    <a [routerLink]="['/']">
       <!--
         Use paths without / because of baseHref
         https://github.com/angular/angular/issues/38299#issuecomment-667132887
@@ -11,8 +11,17 @@
         alt="logo"
         aria-hidden="true"
       />
-    </header>
-  </a>
+    </a>
+
+    <ul class="language-list">
+      @for (language of languages; track $index) {
+        <li [class.active]="localeId === language">
+          <!-- Use href instead of routerLink for reloading page -->
+          <a [href]="'/' + language + '/'">{{ language.toUpperCase() }}</a>
+        </li>
+      }
+    </ul>
+  </header>
   <section class="content">
     <router-outlet></router-outlet>
   </section>

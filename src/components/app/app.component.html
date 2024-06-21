@@ -16,15 +16,11 @@
     <ul class="language-list">
       @for (language of languages; track $index) {
         <li [class.active]="localeId === language">
+          <!-- Use href instead of routerLink for reloading page -->
           <a [href]="'/' + language + '/'">{{ language.toUpperCase() }}</a>
         </li>
       }
     </ul>
-    <!-- <select [formControl]="langulageControl" name="language">
-      <option [value]="language.ENGLISH">English</option>
-      <option [value]="language.RUSSIAN">Russian</option>
-      <option [value]="language.SPANISH">Spanish</option>
-    </select> -->
   </header>
   <section class="content">
     <router-outlet></router-outlet>

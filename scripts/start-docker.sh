@@ -1,2 +1,7 @@
-docker build . -t rent-houses-i18n-image  -f Dockerfile.local
-docker run -d -p 4200:80 rent-houses-i18n-image:latest
+image_name=rent-houses-i18n-image;
+container_name=rent-houses-i18n-cont;
+
+docker stop $container_name
+docker rm $container_name
+docker build . -t $image_name  -f Dockerfile.local
+docker run -d -p 4200:80 --name $container_name $image_name:latest

@@ -1,5 +1,8 @@
 /// <reference types="@angular/localize" />
 
+import '@angular/common/locales/global/en';
+import '@angular/common/locales/global/ru';
+import '@angular/common/locales/global/es';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent, DetailsComponent, HomeComponent } from './components';
 import { Routes, provideRouter } from '@angular/router';

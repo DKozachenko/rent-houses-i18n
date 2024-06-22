@@ -26,6 +26,7 @@ module.exports = {
   ],
   scopes: [
     { name: "rent-houses-i18n" },
+    { name: "rent-houses-transloco" },
     { name: "all" },
   ],
   messages: {

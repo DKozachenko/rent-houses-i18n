@@ -2,8 +2,6 @@
 
 [Tutorial Project](https://angular.dev/tutorials/first-app) from Angular documentation.
 
-The application uses official Angular [package for internalization](https://www.npmjs.com/package/@angular/localize) and uses practises from [official guide](https://angular.dev/guide/i18n).
-
 The code in this project is different from the [original](https://goo.gle/42j4NjS).
 
 Here are some changes:
@@ -22,6 +20,9 @@ Here are some changes:
   * jasmine-spec-reporter
 * changing **typescript** versions from *~4.9.3* to *~5.3.3* to avoid conflicts between versions of other packages
 * restructuring the project, adding [barrel](https://basarat.gitbook.io/typescript/main-1/barrel) files
+
+> [!IMPORTANT]  
+> The application uses official Angular [package for internalization](https://www.npmjs.com/package/@angular/localize) and uses practises from [official guide](https://angular.dev/guide/i18n).
 
 ### Scripts
 

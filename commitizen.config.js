@@ -25,10 +25,8 @@ module.exports = {
     { value: "WIP", name: "WIP:      Work in progress" },
   ],
   scopes: [
-    { name: "app" },
-    { name: "details" },
-    { name: "home" },
-    { name: "housing-location" },
+    { name: "rent-houses-i18n" },
+    { name: "rent-houses-transloco" },
     { name: "all" },
   ],
   messages: {

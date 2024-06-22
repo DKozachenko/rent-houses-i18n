@@ -1,0 +1,41 @@
+{
+  "name": "angular.io-example",
+  "version": "0.0.0",
+  "description": "Example project from an angular.io guide.",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start:default:locale": "ng serve",
+    "start:localize": "bash ./scripts/start-localize.sh",
+    "start:localize:all:docker": "bash ./scripts/start-docker.sh",
+    "build:default:locale": "ng build --localize=false",
+    "build:localize": "bash ./scripts/build-localize.sh",
+    "build:localize:all": "ng build --localize true",
+    "generate:lang:file": "bash ./scripts/generate-lang-file.sh",
+    "check:dictionaries": "node ./scripts/check-dictionaries.js"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "17.2.4",
+    "@angular/common": "17.2.4",
+    "@angular/compiler": "17.2.4",
+    "@angular/core": "17.2.4",
+    "@angular/forms": "17.2.4",
+    "@angular/platform-browser": "17.2.4",
+    "@angular/platform-browser-dynamic": "17.2.4",
+    "@angular/router": "17.2.4",
+    "angular-in-memory-web-api": "~0.17.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "17.2.3",
+    "@angular/cli": "17.2.3",
+    "@angular/compiler-cli": "17.2.4",
+    "@angular/localize": "^17.2.4",
+    "@types/node": "^16.11.35",
+    "ts-node": "~10.9.0",
+    "typescript": "~5.3.3"
+  }
+}

@@ -1,4 +1,4 @@
-name: Rent Houses
+name: Rent Houses i18n
 
 on:
   workflow_dispatch:
@@ -20,4 +20,5 @@ jobs:
         with:
           node-version: 18
       - name: Check dictionaries
+        working-directory: ./apps/rent-houses-i18n
         run: npm run check:dictionaries

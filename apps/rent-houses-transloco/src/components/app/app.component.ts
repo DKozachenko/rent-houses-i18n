@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   languages: string[] = [];
   languageControl!: FormControl<string | null>;
 
-  private translocoService = inject(TranslocoService);
+  private readonly translocoService = inject(TranslocoService);
 
   ngOnInit(): void {
     this.languages = <string[]>this.translocoService.getAvailableLangs();

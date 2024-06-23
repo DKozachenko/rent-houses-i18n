@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { HousingService } from '../../services';
-import { HousingLocation } from '../../models';
+import { Observable } from 'rxjs';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { HousingService } from '../../services';
+import { HousingLocation } from '../../models';
 
 @Component({
   selector: 'app-details',
@@ -18,10 +19,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent {
-
   route: ActivatedRoute = inject(ActivatedRoute);
-  housingService = inject(HousingService);
-  housingLocation: HousingLocation | undefined;
+  housingLocation$!: Observable<HousingLocation | undefined>;
 
   applyForm = new FormGroup({
     firstName: new FormControl(''),
@@ -29,9 +28,11 @@ export class DetailsComponent {
     email: new FormControl('')
   });
 
+  housingService = inject(HousingService);
+
   constructor() {
     const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
-    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId);
+    this.housingLocation$ = this.housingService.getHousingLocationById(housingLocationId);
   }
 
   submitApplication() {

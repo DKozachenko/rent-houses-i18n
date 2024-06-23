@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslocoService } from '@jsverse/transloco';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { TranslocoService } from '@jsverse/transloco';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  private langSub!: Subscription;
   languages: string[] = [];
   languageControl!: FormControl<string | null>;
 
@@ -28,12 +30,16 @@ export class AppComponent implements OnInit {
 
     const activeLang = this.translocoService.getActiveLang();
     this.languageControl = new FormControl<string>(activeLang, [Validators.required]);
-    this.languageControl.valueChanges.subscribe((value: string | null) => {
+    this.langSub = this.languageControl.valueChanges.subscribe((value: string | null) => {
       if (!value) {
         return;
       }
 
       this.translocoService.setActiveLang(value);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.langSub.unsubscribe();
   }
 }

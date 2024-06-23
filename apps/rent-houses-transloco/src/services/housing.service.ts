@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Translation, TranslocoService } from '@jsverse/transloco';
 import { HousingLocation } from '../models';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,14 +10,13 @@ export class HousingService implements OnDestroy {
   private langSub!: Subscription;
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
-  protected housingLocationList: HousingLocation[] = [];
   private readonly translocoService = inject(TranslocoService);
 
-  constructor() {
-    this.langSub = this.translocoService
-      .selectTranslation()
-      .subscribe((data: Translation) => {
-        this.housingLocationList = [
+  housingLocationList$: Observable<HousingLocation[]> = this.translocoService
+    .selectTranslation()
+    .pipe(
+      map((data: Translation) => {
+        return [
           {
             id: 0,
             name: data['housing-location-0-name'],
@@ -119,22 +118,22 @@ export class HousingService implements OnDestroy {
             laundry: true,
           },
         ];
-      });
-  }
+      })
+    );
 
-  getAllHousingLocations(): HousingLocation[] {
-    return this.housingLocationList;
-  }
-
-  getHousingLocationById(id: number): HousingLocation | undefined {
-    return this.housingLocationList.find(
-      (housingLocation) => housingLocation.id === id
+  getHousingLocationById(id: number): Observable<HousingLocation | undefined> {
+    return this.housingLocationList$.pipe(
+      map((list) => list.find((housingLocation) => housingLocation.id === id))
     );
   }
 
   submitApplication(firstName: string, lastName: string, email: string) {
     console.log(
-      this.translocoService.translate('submit-application-log', { firstName, lastName, email })
+      this.translocoService.translate('submit-application-log', {
+        firstName,
+        lastName,
+        email,
+      })
     );
   }
 

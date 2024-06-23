@@ -1,9 +1,10 @@
+import { Observable, map } from 'rxjs';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { Title } from '@angular/platform-browser';
-import { Subscription, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { HousingLocation } from '../../models';
 import { HousingService } from '../../services';
 
@@ -17,10 +18,10 @@ import { HousingService } from '../../services';
 export class HomeComponent implements OnInit, OnDestroy {
   private langSub!: Subscription;
 
-  housingLocationList: HousingLocation[] = [];
-  housingService: HousingService = inject(HousingService);
-  filteredLocationList: HousingLocation[] = [];
+  housingLocationList$!: Observable<HousingLocation[]>;
+  filteredLocationList$!: Observable<HousingLocation[]>;
 
+  housingService: HousingService = inject(HousingService);
   private readonly titleService = inject(Title);
   private readonly translocoService = inject(TranslocoService);
 
@@ -29,24 +30,22 @@ export class HomeComponent implements OnInit, OnDestroy {
       .selectTranslate('home-page-title')
       .subscribe((value: string) => this.titleService.setTitle(value));
 
-    const eventSub = this.translocoService.events$
-      .pipe(filter((e) => e.type === 'translationLoadSuccess'))
-      .subscribe(() => {
-        this.housingLocationList = this.housingService.getAllHousingLocations();
-        this.filteredLocationList = this.housingLocationList;
-      });
-    this.langSub.add(eventSub);
+    this.housingLocationList$ = this.housingService.housingLocationList$;
+    this.filteredLocationList$ = this.housingService.housingLocationList$;
   }
 
   filterResults(text: string) {
     if (!text) {
-      this.filteredLocationList = this.housingLocationList;
+      this.filteredLocationList$ = this.housingLocationList$;
       return;
     }
 
-    this.filteredLocationList = this.housingLocationList.filter(
-      (housingLocation) =>
-        housingLocation?.city.toLowerCase().includes(text.toLowerCase())
+    this.filteredLocationList$ = this.housingLocationList$.pipe(
+      map((list) =>
+        list.filter((housingLocation) =>
+          housingLocation?.city.toLowerCase().includes(text.toLowerCase())
+        )
+      )
     );
   }
 

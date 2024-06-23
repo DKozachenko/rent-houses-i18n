@@ -3,7 +3,7 @@ import { Routes, provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { provideTransloco } from '@jsverse/transloco';
-import { TranslocoHttpLoader } from './transloco-loader';
+import { TranslocoHttpLoader } from './loaders';
 import { AppComponent, DetailsComponent, HomeComponent } from './components';
 
 const routeConfig: Routes = [

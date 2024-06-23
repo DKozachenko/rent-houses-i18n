@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { HousingLocation } from '../../models';
 import { HousingService } from '../../services';
 
@@ -9,7 +10,8 @@ import { HousingService } from '../../services';
   standalone: true,
   imports: [
     CommonModule,
-    HousingLocationComponent
+    HousingLocationComponent,
+    TranslocoDirective
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

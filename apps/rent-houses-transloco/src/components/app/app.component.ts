@@ -18,11 +18,14 @@ import { TranslocoService } from '@jsverse/transloco';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  languages: string[] = [];
   languageControl!: FormControl<string | null>;
 
   private translocoService = inject(TranslocoService);
 
   ngOnInit(): void {
+    this.languages = <string[]>this.translocoService.getAvailableLangs();
+
     const activeLang = this.translocoService.getActiveLang();
     this.languageControl = new FormControl<string>(activeLang, [Validators.required]);
     this.languageControl.valueChanges.subscribe((value: string | null) => {

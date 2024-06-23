@@ -3,35 +3,50 @@ const path = require('path');
 
 const LOCALES_PATH = path.join(__dirname, '..', 'src', 'assets', 'i18n');
 const DEFAULT_LOCALE_FILENAME = 'en.json';
-const DEFAULT_LOCALE_PATH = path.join(LOCALES_PATH, DEFAULT_LOCALE_FILENAME);
-
-const DEFAULT_LOCALE_DICTIONARY = require(DEFAULT_LOCALE_PATH);
 
 function isDictionariesEqual(dict1, dict2) {
   return Object.keys(dict1).every(key => Object.keys(dict2).includes(key));
 }
 
-fs.readdir(LOCALES_PATH, (err, fileNames) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
+function isDirectory(filename) {
+  return filename.split('.').length === 1;
+}
 
-  const dictionaries = fileNames.filter(fileName => fileName !== DEFAULT_LOCALE_FILENAME);
-
-  dictionaries.forEach(fileName => {
-    const filePath = path.join(LOCALES_PATH, fileName);
-    const localeDictionary = require(filePath);
-    if (Object.keys(localeDictionary).length !== Object.keys(DEFAULT_LOCALE_DICTIONARY).length) {
-      console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${DEFAULT_LOCALE_PATH}`);
-      process.exit(1);
+function checkFolderDictionaries(dir) {
+  fs.readdir(dir, (err, fileNames) => {
+    if (err) {
+      console.log(err);
+      return;
     }
 
-    if (!isDictionariesEqual(localeDictionary, DEFAULT_LOCALE_DICTIONARY)) {
-      console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${DEFAULT_LOCALE_PATH}`);
-      process.exit(1);
-    }
+    const defaultLocalePath = path.join(dir, DEFAULT_LOCALE_FILENAME);
+    const defaultLocaleDictionary = require(defaultLocalePath);
+
+    const files = fileNames.filter(fileName => fileName !== DEFAULT_LOCALE_FILENAME);
+
+    files.forEach((fileName, index) => {
+      if (isDirectory(fileName)) {
+        checkFolderDictionaries(path.join(LOCALES_PATH, fileName));
+        return;
+      }
+
+      const filePath = path.join(dir, fileName);
+      const localeDictionary = require(filePath);
+      if (Object.keys(localeDictionary).length !== Object.keys(defaultLocaleDictionary).length) {
+        console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${defaultLocalePath}`);
+        process.exit(1);
+      }
+
+      if (!isDictionariesEqual(localeDictionary, defaultLocaleDictionary)) {
+        console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${defaultLocalePath}`);
+        process.exit(1);
+      }
+
+      if (index === files.length - 1) {
+        console.log(`Dictionaries in ${dir} are in sync (${Object.keys(defaultLocaleDictionary).length} translations)`);
+      }
+    });
   });
+}
 
-  console.log('Dictionaries are in sync');
-});
+checkFolderDictionaries(LOCALES_PATH);

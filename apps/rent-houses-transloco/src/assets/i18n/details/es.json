@@ -1,0 +1,12 @@
+{
+  "details-listing-photo-alt": "Foto exterior de {{name}}",
+  "details-listing-features-section-heading": "Acerca de esta ubicación de vivienda",
+  "details-units-availiable": "Unidades disponibles: {{value}}",
+  "details-have-wifi": "Esta ubicación tiene wifi: {{value}}",
+  "details-have-laundry": "Este lugar tiene lavandería: {{value}}",
+  "details-listing-apply-section-heading": "Aplicar ahora para vivir aquí",
+  "apply-form-first-name": "Nombre de pila",
+  "apply-form-last-name": "Apellido",
+  "apply-form-email": "Correo electrónico",
+  "apply-form-button": "Aplica ya"
+}

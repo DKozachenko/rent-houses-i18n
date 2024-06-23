@@ -1,0 +1,12 @@
+{
+  "details-listing-photo-alt": "Внешнее фото {{name}}",
+  "details-listing-features-section-heading": "Об этом местоположении жилья",
+  "details-units-availiable": "Доступно мест: {{value}}",
+  "details-have-wifi": "Есть ли wifi: {{value}}",
+  "details-have-laundry": "Есть ли прачечная: {{value}}",
+  "details-listing-apply-section-heading": "Подайте заявку сейчас, чтобы жить здесь",
+  "apply-form-first-name": "Имя",
+  "apply-form-last-name": "Фамилия",
+  "apply-form-email": "Почта",
+  "apply-form-button": "Подать сейчас"
+}

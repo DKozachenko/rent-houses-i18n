@@ -4,13 +4,15 @@ import { ActivatedRoute } from '@angular/router';
 import { HousingService } from '../../services';
 import { HousingLocation } from '../../models';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-details',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslocoDirective
   ],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],

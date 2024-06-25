@@ -16,6 +16,7 @@ const routeConfig: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
+    // TODO: эм???
     title: 'Home details',
   },
 ];

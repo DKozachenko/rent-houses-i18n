@@ -33,5 +33,5 @@ fs.readdir(LOCALES_PATH, (err, fileNames) => {
     }
   });
 
-  console.log('Dictionaries are in sync');
+  console.log(`Dictionaries are in sync (${Object.keys(DEFAULT_LOCALE_DICTIONARY.translations).length} translations)`);
 });

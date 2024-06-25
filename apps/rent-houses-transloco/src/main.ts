@@ -1,20 +1,38 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent, DetailsComponent, HomeComponent } from './components';
 import { Routes, provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { isDevMode } from '@angular/core';
+import { provideTransloco } from '@jsverse/transloco';
+import { TranslocoHttpLoader } from './loaders';
+import { AppComponent, DetailsComponent, HomeComponent } from './components';
 
 const routeConfig: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home page',
+    title: '...',
   },
   {
     path: 'details/:id',
     component: DetailsComponent,
-    title: 'Home details',
+    title: '...',
   },
 ];
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routeConfig)],
+  providers: [
+    provideRouter(routeConfig),
+    provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'es', 'ru'],
+        defaultLang: 'en',
+        fallbackLang: 'en',
+        // Remove this option if your application doesn't support changing language in runtime.
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
+  ],
 }).catch((err) => console.error(err));

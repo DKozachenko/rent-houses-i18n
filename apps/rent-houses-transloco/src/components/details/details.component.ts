@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { Title } from '@angular/platform-browser';
 import { HousingService } from '../../services';
 import { HousingLocation } from '../../models';
 
@@ -18,7 +19,9 @@ import { HousingLocation } from '../../models';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit, OnDestroy {
+  private langSub!: Subscription;
+
   route: ActivatedRoute = inject(ActivatedRoute);
   housingLocation$!: Observable<HousingLocation | undefined>;
 
@@ -29,8 +32,14 @@ export class DetailsComponent {
   });
 
   housingService = inject(HousingService);
+  private readonly titleService = inject(Title);
+  private readonly translocoService = inject(TranslocoService);
 
-  constructor() {
+  ngOnInit(): void {
+    this.langSub = this.translocoService
+      .selectTranslate('home-details-title')
+      .subscribe((value: string) => this.titleService.setTitle(value));
+
     const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     this.housingLocation$ = this.housingService.getHousingLocationById(housingLocationId);
   }
@@ -43,4 +52,7 @@ export class DetailsComponent {
     );
   }
 
+  ngOnDestroy(): void {
+    this.langSub.unsubscribe();
+  }
 }

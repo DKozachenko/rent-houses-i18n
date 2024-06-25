@@ -16,8 +16,7 @@ const routeConfig: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
-    // TODO: эм???
-    title: 'Home details',
+    title: $localize `:@@home-details-title:Home details`,
   },
 ];
 

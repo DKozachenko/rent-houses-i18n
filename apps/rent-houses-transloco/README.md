@@ -38,9 +38,6 @@ Here are some changes:
 * Create copy of `en.json` in `src/assets/i18n` (or in nested folder) and rename it according to template: `<LANG>.json`
 * Fill all translations in file
 * Add new language in `src/main.ts` at `availableLangs` property
-<!-- * Create new index html file in `src/index` and rename it according to template: `index.<LANG>.html`
-* Add new locale to `projects.angular.io-example.i18n.locales` in `angular.json`
-* Add new configuration to `projects.angular.io-example.architect.build.configurations` in `angular.json` -->
 
 ### Update existing translations
 

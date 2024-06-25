@@ -10,6 +10,8 @@ Repository is divided into 3 folders (inside `./apps`) with same application. Th
 
 * [rent-houses-i18n](./apps//rent-houses-i18n/README.md) uses official Angular [package for internalization](https://www.npmjs.com/package/@angular/localize) and practises from [official guide](https://angular.dev/guide/i18n).
 
+* [rent-houses-transloco](./apps//rent-houses-transloco/README.md) uses [transloco library](https://www.npmjs.com/package/@jsverse/transloco) and practises from [its docs](https://jsverse.github.io/transloco/).
+
 ### Scripts
 
 Scripts for each application is different. Go to appropriate project's `README`.

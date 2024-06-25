@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const LOCALES_PATH = path.join(__dirname, '..', 'src', 'assets', 'i18n');
+const ROOT_LOCALES_PATH = path.join(__dirname, '..', 'src', 'assets', 'i18n');
 const DEFAULT_LOCALE_FILENAME = 'en.json';
 
 function isDictionariesEqual(dict1, dict2) {
@@ -26,7 +26,7 @@ function checkFolderDictionaries(dir) {
 
     files.forEach((fileName, index) => {
       if (isDirectory(fileName)) {
-        checkFolderDictionaries(path.join(LOCALES_PATH, fileName));
+        checkFolderDictionaries(path.join(ROOT_LOCALES_PATH, fileName));
         return;
       }
 
@@ -49,4 +49,4 @@ function checkFolderDictionaries(dir) {
   });
 }
 
-checkFolderDictionaries(LOCALES_PATH);
+checkFolderDictionaries(ROOT_LOCALES_PATH);

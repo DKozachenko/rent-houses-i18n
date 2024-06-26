@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.languages = <string[]>this.translocoService.getAvailableLangs();
 
     const activeLang = this.translocoService.getActiveLang();
+    // TODO: что??
     this.translocoService.setActiveLang(activeLang);
     this.languageControl = new FormControl<string>(activeLang, [Validators.required]);
     this.langSub = this.languageControl.valueChanges.subscribe((value: string | null) => {

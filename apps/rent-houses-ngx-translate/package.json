@@ -6,7 +6,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build"
+    "start:docker": "bash ./scripts/start-docker.sh",
+    "build": "ng build",
+    "check:dictionaries": "node ./scripts/check-dictionaries.js"
   },
   "private": true,
   "dependencies": {

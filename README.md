@@ -12,6 +12,8 @@ Repository is divided into 3 folders (inside `./apps`) with same application. Th
 
 * [rent-houses-transloco](./apps//rent-houses-transloco/README.md) uses [transloco library](https://www.npmjs.com/package/@jsverse/transloco) and practises from [its docs](https://jsverse.github.io/transloco/).
 
+* [rent-houses-ngx-translate](./apps//rent-houses-ngx-translate/README.md) uses [ngx-translate library](https://www.npmjs.com/package/@ngx-translate/core) and practises from [its docs](https://github.com/ngx-translate/core).
+
 ### Scripts
 
 Scripts for each application is different. Go to appropriate project's `README`.

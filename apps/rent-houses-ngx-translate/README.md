@@ -1,4 +1,4 @@
-# rent-houses-transloco
+# rent-houses-ngx-translate
 
 [Tutorial Project](https://angular.dev/tutorials/first-app) from Angular documentation.
 
@@ -22,7 +22,7 @@ Here are some changes:
 * restructuring the project, adding [barrel](https://basarat.gitbook.io/typescript/main-1/barrel) files
 
 > [!IMPORTANT]  
-> The application uses [transloco library](https://www.npmjs.com/package/@jsverse/transloco) and practises from [its docs](https://jsverse.github.io/transloco/).
+> The application uses [ngx-translate library](https://www.npmjs.com/package/@ngx-translate/core) and practises from [its docs](https://github.com/ngx-translate/core).
 
 ### Scripts
 
@@ -35,13 +35,13 @@ Here are some changes:
 
 ### Creating new translation file
 
-* Create copy of `en.json` in `src/assets/i18n` (or in nested folder) and rename it according to template: `<LANG>.json`
+* Create copy of `en.json` in `src/assets/i18n` and rename it according to template: `<LANG>.json`
 * Fill all translations in file
-* Add new language in `src/main.ts` at `availableLangs` property
+* Add new language in `src/main.ts` at `initializeApplication` function
 
 ### Update existing translations
 
-* Update translations in default locale dictionary (which is `en.json` in `src/assets/i18n` and in nested folders)
+* Update translations in default locale dictionary (which is `en.json` in `src/assets/i18n`)
 * Copy changed lines from `en.json` in `src/assets/i18n` to other dictionary files and fill translations
 
 ### Docker

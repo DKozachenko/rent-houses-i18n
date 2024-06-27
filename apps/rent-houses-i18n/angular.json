@@ -9,11 +9,10 @@
         "sourceLocale": "en",
         "locales": {
           "ru": {
-            // TODO: поменять бы папку на классик
-            "translation": "src/locale/dictionary.ru.json"
+            "translation": "src/assets/i18n/ru.json"
           },
           "es": {
-            "translation": "src/locale/dictionary.es.json"
+            "translation": "src/assets/i18n/es.json"
           }
         }
       },

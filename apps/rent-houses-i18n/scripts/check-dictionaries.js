@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const LOCALES_PATH = path.join(__dirname, '..', 'src', 'locale');
-const DEFAULT_LOCALE_FILENAME = 'dictionary.en.json';
+const LOCALES_PATH = path.join(__dirname, '..', 'src', 'assets', 'i18n');
+const DEFAULT_LOCALE_FILENAME = 'en.json';
 const DEFAULT_LOCALE_PATH = path.join(LOCALES_PATH, DEFAULT_LOCALE_FILENAME);
 
 const DEFAULT_LOCALE_DICTIONARY = require(DEFAULT_LOCALE_PATH);

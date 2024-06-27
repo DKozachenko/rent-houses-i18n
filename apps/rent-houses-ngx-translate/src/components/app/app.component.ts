@@ -32,7 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.languages = this.translateService.getLangs();
 
     const activeLang = this.translateService.currentLang;
-    console.log(activeLang);
     this.languageControl = new FormControl<string>(activeLang, [Validators.required]);
     this.langSub = this.languageControl.valueChanges.subscribe((value: string | null) => {
       if (!value) {

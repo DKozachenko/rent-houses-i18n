@@ -32,6 +32,7 @@ function traverseAndFlatten(currentNode, target, flattenedKey) {
   }
 }
 
+// https://stackoverflow.com/a/34514143
 function flatten(obj) {
   let flattenedObject = {};
   traverseAndFlatten(obj, flattenedObject);

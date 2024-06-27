@@ -9,6 +9,7 @@
         "sourceLocale": "en",
         "locales": {
           "ru": {
+            // TODO: поменять бы папку на классик
             "translation": "src/locale/dictionary.ru.json"
           },
           "es": {

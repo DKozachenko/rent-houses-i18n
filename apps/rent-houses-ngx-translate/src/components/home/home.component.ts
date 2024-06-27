@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { HousingLocation } from '../../models';
 import { HousingService } from '../../services';
 
@@ -9,7 +10,8 @@ import { HousingService } from '../../services';
   standalone: true,
   imports: [
     CommonModule,
-    HousingLocationComponent
+    HousingLocationComponent,
+    TranslateModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

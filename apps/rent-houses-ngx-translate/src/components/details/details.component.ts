@@ -1,16 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HousingService } from '../../services';
 import { HousingLocation } from '../../models';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],

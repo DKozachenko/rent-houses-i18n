@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslocoService } from '@jsverse/transloco';
 import { Subscription } from 'rxjs';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -14,7 +14,8 @@ import { DOCUMENT } from '@angular/common';
     RouterLink,
     RouterOutlet,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -24,13 +25,13 @@ export class AppComponent implements OnInit, OnDestroy {
   languages: string[] = [];
   languageControl!: FormControl<string | null>;
 
-  private readonly translocoService = inject(TranslocoService);
+  private readonly translateService = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
 
   ngOnInit(): void {
-    this.languages = <string[]>this.translocoService.getAvailableLangs();
+    this.languages = this.translateService.getLangs();
 
-    const activeLang = this.translocoService.getActiveLang();
+    const activeLang = this.translateService.currentLang;
     this.languageControl = new FormControl<string>(activeLang, [Validators.required]);
     this.langSub = this.languageControl.valueChanges.subscribe((value: string | null) => {
       if (!value) {
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       this.document.documentElement.lang = value;
-      this.translocoService.setActiveLang(value);
+      this.translateService.use(value);
     });
   }
 

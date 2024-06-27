@@ -33,12 +33,12 @@ function checkFolderDictionaries(dir) {
       const filePath = path.join(dir, fileName);
       const localeDictionary = require(filePath);
       if (Object.keys(localeDictionary).length !== Object.keys(defaultLocaleDictionary).length) {
-        console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${defaultLocalePath}`);
+        console.log(`Keys in ${filePath} dictionary differ from keys in ${defaultLocalePath}`);
         process.exit(1);
       }
 
       if (!isDictionariesEqual(localeDictionary, defaultLocaleDictionary)) {
-        console.log(`Keys in "translations" of ${filePath} dictionary differ from keys in "translations" of ${defaultLocalePath}`);
+        console.log(`Keys in ${filePath} dictionary differ from keys in ${defaultLocalePath}`);
         process.exit(1);
       }
 

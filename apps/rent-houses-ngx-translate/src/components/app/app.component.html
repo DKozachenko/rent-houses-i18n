@@ -1,0 +1,21 @@
+<main>
+  <header class="brand-name">
+    <a [routerLink]="['/']">
+      <img
+        class="brand-logo"
+        src="/assets/logo.svg"
+        alt="logo"
+        aria-hidden="true"
+      />
+    </a>
+
+    <select name="language" [formControl]="languageControl">
+      @for (language of languages; track $index) {
+        <option [value]="language">{{ language.toUpperCase() }}</option>
+      }
+    </select>
+  </header>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+</main>

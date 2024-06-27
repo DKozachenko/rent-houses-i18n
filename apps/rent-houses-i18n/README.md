@@ -29,17 +29,17 @@ Here are some changes:
 | Script                                     | Description                                                                                                                |
 |--------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | npm run start:default:locale               | Running the application with default locale (which is `en`)                                                                |
-| npm run start:localize `<LOCALE>`          | Running the application with specific locale (available locales are in `src/locale`)                                       |
+| npm run start:localize `<LOCALE>`          | Running the application with specific locale (available locales are in `src/assets/i18n`)                                       |
 | npm run start:localize:all:docker          | Running the application with all available locales in Docker                                                               |
 | npm run build:default:locale               | Build the application with default locale (which is `en`)                                                                  |
-| npm run build:localize `<LOCALE>`          | Build the application with specific locale (available locales are in `src/locale`)                                         |
+| npm run build:localize `<LOCALE>`          | Build the application with specific locale (available locales are in `src/assets/i18n`)                                         |
 | npm run build:localize:all                 | Build the application with all available locales                                                                           |
 | npm run generate:lang:file `<LANG>`        | Generate new dictionary file with translations                                                                             |
-| npm run check:dictionaries                 | Check translations in dictionaries (which are in folder `src/locale`)                                                      |
+| npm run check:dictionaries                 | Check translations in dictionaries (which are in folder `src/assets/i18n`)                                                      |
 
 ### Creating new translation file
 
-* Create copy of `dictionary.en.json` in `src/locale` and rename it according to template: `dictionary.<LANG>.json`
+* Create copy of `en.json` in `src/assets/i18n` and rename it according to template: `<LANG>.json`
 * Fill all translations in file
 * Create new index html file in `src/index` and rename it according to template: `index.<LANG>.html`
 * Add new locale to `projects.angular.io-example.i18n.locales` in `angular.json`
@@ -51,11 +51,11 @@ Here are some changes:
 ```bash
 npm run generate:lang:file en
 ```
-* Copy changed lines from `dictionary.en.json` in `src/locale` to other dictionary files and fill translations
+* Copy changed lines from `en.json` in `src/assets/i18n` to other dictionary files and fill translations
 
 ### Docker
 
-To run the application with all available locales (available locales are in `src/locale`) run the script:
+To run the application with all available locales (available locales are in `src/assets/i18n`) run the script:
 
 ```bash
 npm run start:localize:all:docker

@@ -1,0 +1,19 @@
+<section>
+  <form>
+    <input
+      type="text"
+      [placeholder]="'home.filter-by-city-placeholder' | translate"
+      #filter
+    />
+    <button class="primary" type="button" (click)="filterResults(filter.value)">
+      {{ "home.filter-by-city-search-button" | translate }}
+    </button>
+  </form>
+</section>
+<section class="results">
+  <app-housing-location
+    *ngFor="let housingLocation of (filteredLocationList$ | async)"
+    [housingLocation]="housingLocation"
+  >
+  </app-housing-location>
+</section>

@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { Translation, TranslocoService } from '@jsverse/transloco';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Observable, Subscription, map, concat, defer } from 'rxjs';
 import { HousingLocation } from '../models';
-import { Observable, Subscription, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,18 +10,35 @@ export class HousingService implements OnDestroy {
   private langSub!: Subscription;
   readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
-  private readonly translocoService = inject(TranslocoService);
+  private readonly translateService = inject(TranslateService);
+  // Need defer for dynamic `this.translateService.currentLang`
+  private readonly currentTranslations$ = defer(() =>
+    concat(
+      this.translateService.getTranslation(this.translateService.currentLang),
+      this.translateService.onLangChange.asObservable()
+    ).pipe(
+      map((data: object | LangChangeEvent) => {
+        if (!data.hasOwnProperty('lang')) {
+          return {
+            lang: this.translateService.currentLang,
+            translations: data,
+          };
+        }
 
-  housingLocationList$: Observable<HousingLocation[]> = this.translocoService
-    .selectTranslation()
-    .pipe(
-      map((data: Translation) => {
+        return <LangChangeEvent>data;
+      })
+    )
+  );
+
+  housingLocationList$: Observable<HousingLocation[]> =
+    this.currentTranslations$.pipe(
+      map(({ translations }) => {
         return [
           {
             id: 0,
-            name: data['housing-location-0-name'],
-            city: data['housing-location-0-city'],
-            state: data['housing-location-0-state'],
+            name: translations['housing-location-0-name'],
+            city: translations['housing-location-0-city'],
+            state: translations['housing-location-0-state'],
             photo: `${this.baseUrl}/bernard-hermant-CLKGGwIBTaY-unsplash.jpg`,
             availableUnits: 4,
             wifi: true,
@@ -29,9 +46,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 1,
-            name: data['housing-location-1-name'],
-            city: data['housing-location-1-city'],
-            state: data['housing-location-1-state'],
+            name: translations['housing-location-1-name'],
+            city: translations['housing-location-1-city'],
+            state: translations['housing-location-1-state'],
             photo: `${this.baseUrl}/brandon-griggs-wR11KBaB86U-unsplash.jpg`,
             availableUnits: 0,
             wifi: false,
@@ -39,9 +56,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 2,
-            name: data['housing-location-2-name'],
-            city: data['housing-location-2-city'],
-            state: data['housing-location-2-state'],
+            name: translations['housing-location-2-name'],
+            city: translations['housing-location-2-city'],
+            state: translations['housing-location-2-state'],
             photo: `${this.baseUrl}/i-do-nothing-but-love-lAyXdl1-Wmc-unsplash.jpg`,
             availableUnits: 1,
             wifi: false,
@@ -49,9 +66,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 3,
-            name: data['housing-location-3-name'],
-            city: data['housing-location-3-city'],
-            state: data['housing-location-3-state'],
+            name: translations['housing-location-3-name'],
+            city: translations['housing-location-3-city'],
+            state: translations['housing-location-3-state'],
             photo: `${this.baseUrl}/ian-macdonald-W8z6aiwfi1E-unsplash.jpg`,
             availableUnits: 1,
             wifi: true,
@@ -59,9 +76,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 4,
-            name: data['housing-location-4-name'],
-            city: data['housing-location-4-city'],
-            state: data['housing-location-4-state'],
+            name: translations['housing-location-4-name'],
+            city: translations['housing-location-4-city'],
+            state: translations['housing-location-4-state'],
             photo: `${this.baseUrl}/krzysztof-hepner-978RAXoXnH4-unsplash.jpg`,
             availableUnits: 1,
             wifi: true,
@@ -69,9 +86,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 5,
-            name: data['housing-location-5-name'],
-            city: data['housing-location-5-city'],
-            state: data['housing-location-5-state'],
+            name: translations['housing-location-5-name'],
+            city: translations['housing-location-5-city'],
+            state: translations['housing-location-5-state'],
             photo: `${this.baseUrl}/r-architecture-JvQ0Q5IkeMM-unsplash.jpg`,
             availableUnits: 2,
             wifi: true,
@@ -79,9 +96,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 6,
-            name: data['housing-location-6-name'],
-            city: data['housing-location-6-city'],
-            state: data['housing-location-6-state'],
+            name: translations['housing-location-6-name'],
+            city: translations['housing-location-6-city'],
+            state: translations['housing-location-6-state'],
             photo: `${this.baseUrl}/phil-hearing-IYfp2Ixe9nM-unsplash.jpg`,
             availableUnits: 5,
             wifi: true,
@@ -89,9 +106,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 7,
-            name: data['housing-location-7-name'],
-            city: data['housing-location-7-city'],
-            state: data['housing-location-7-state'],
+            name: translations['housing-location-7-name'],
+            city: translations['housing-location-7-city'],
+            state: translations['housing-location-7-state'],
             photo: `${this.baseUrl}/r-architecture-GGupkreKwxA-unsplash.jpg`,
             availableUnits: 2,
             wifi: true,
@@ -99,9 +116,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 8,
-            name: data['housing-location-8-name'],
-            city: data['housing-location-8-city'],
-            state: data['housing-location-8-state'],
+            name: translations['housing-location-8-name'],
+            city: translations['housing-location-8-city'],
+            state: translations['housing-location-8-state'],
             photo: `${this.baseUrl}/saru-robert-9rP3mxf8qWI-unsplash.jpg`,
             availableUnits: 10,
             wifi: false,
@@ -109,9 +126,9 @@ export class HousingService implements OnDestroy {
           },
           {
             id: 9,
-            name: data['housing-location-9-name'],
-            city: data['housing-location-9-city'],
-            state: data['housing-location-9-state'],
+            name: translations['housing-location-9-name'],
+            city: translations['housing-location-9-city'],
+            state: translations['housing-location-9-state'],
             photo: `${this.baseUrl}/webaliser-_TPTXZd9mOo-unsplash.jpg`,
             availableUnits: 6,
             wifi: true,
@@ -129,7 +146,7 @@ export class HousingService implements OnDestroy {
 
   submitApplication(firstName: string, lastName: string, email: string) {
     console.log(
-      this.translocoService.translate('submit-application-log', {
+      this.translateService.instant('submit-application-log', {
         firstName,
         lastName,
         email,

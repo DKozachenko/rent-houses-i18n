@@ -1,0 +1,74 @@
+@if (housingLocation$ | async; as housingLocation) {
+  <article>
+    <img
+      class="listing-photo"
+      [src]="housingLocation.photo"
+      [alt]="
+        'details.details-listing-photo-alt'
+          | translate : { name: housingLocation.name }
+      "
+    />
+    <section class="listing-description">
+      <h2 class="listing-heading">{{ housingLocation.name }}</h2>
+      <p class="listing-location">
+        {{ housingLocation.city }}, {{ housingLocation.state }}
+      </p>
+    </section>
+    <section class="listing-features">
+      <h2 class="section-heading">
+        {{ "details.details-listing-features-section-heading" | translate }}
+      </h2>
+      <ul>
+        <li>
+          {{
+            "details.details-units-availiable"
+              | translate
+                : {
+                    value: housingLocation.availableUnits
+                  }
+          }}
+        </li>
+        <li>
+          {{
+            "details.details-have-wifi"
+              | translate
+                : {
+                    value: housingLocation.wifi
+                  }
+          }}
+        </li>
+        <li>
+          {{
+            "details.details-have-laundry"
+              | translate
+                : {
+                    value: housingLocation.laundry
+                  }
+          }}
+        </li>
+      </ul>
+    </section>
+    <section class="listing-apply">
+      <h2 class="section-heading">
+        {{ "details.details-listing-apply-section-heading" | translate }}
+      </h2>
+      <form [formGroup]="applyForm" (submit)="submitApplication()">
+        <label for="first-name">{{
+          "details.apply-form-first-name" | translate
+        }}</label>
+        <input id="first-name" type="text" formControlName="firstName" />
+
+        <label for="last-name">{{
+          "details.apply-form-last-name" | translate
+        }}</label>
+        <input id="last-name" type="text" formControlName="lastName" />
+
+        <label for="email">{{ "details.apply-form-email" | translate }}</label>
+        <input id="email" type="email" formControlName="email" />
+        <button type="submit" class="primary">
+          {{ "details.apply-form-button" | translate }}
+        </button>
+      </form>
+    </section>
+  </article>
+}

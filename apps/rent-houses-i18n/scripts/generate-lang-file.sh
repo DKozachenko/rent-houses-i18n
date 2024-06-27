@@ -1,6 +1,6 @@
 locale=$1
-output_path=src/locale
-out_file=dictionary.$locale.json
+output_path=src/assets/i18n
+out_file=$locale.json
 output_full_path=$output_path/$out_file
 
 npx ng extract-i18n --output-path=$output_path --format=json --out-file=$out_file

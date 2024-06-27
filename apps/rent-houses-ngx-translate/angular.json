@@ -5,17 +5,6 @@
   "projects": {
     "angular.io-example": {
       "projectType": "application",
-      "i18n": {
-        "sourceLocale": "en",
-        "locales": {
-          "ru": {
-            "translation": "src/assets/i18n/ru.json"
-          },
-          "es": {
-            "translation": "src/assets/i18n/es.json"
-          }
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,14 +13,9 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
-            "index": {
-              "input": "src/index/index.en.html",
-              "output": "index.html"
-            },
+            "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -40,37 +24,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "i18nMissingTranslation": "error"
+            "scripts": []
           },
           "configurations": {
-            "en": {
-              "index": {
-                "input": "src/index/index.en.html",
-                "output": "index.html"
-              },
-              "localize": [
-                "en"
-              ]
-            },
-            "es": {
-              "index": {
-                "input": "src/index/index.es.html",
-                "output": "index.html"
-              },
-              "localize": [
-                "es"
-              ]
-            },
-            "ru": {
-              "index": {
-                "input": "src/index/index.ru.html",
-                "output": "index.html"
-              },
-              "localize": [
-                "ru"
-              ]
-            },
             "production": {
               "budgets": [
                 {
@@ -97,15 +53,6 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "en": {
-              "buildTarget": "angular.io-example:build:development,en"
-            },
-            "es": {
-              "buildTarget": "angular.io-example:build:development,es"
-            },
-            "ru": {
-              "buildTarget": "angular.io-example:build:development,ru"
-            },
             "production": {
               "buildTarget": "angular.io-example:build:production"
             },
@@ -114,12 +61,6 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "angular.io-example:build"
-          }
         }
       }
     }

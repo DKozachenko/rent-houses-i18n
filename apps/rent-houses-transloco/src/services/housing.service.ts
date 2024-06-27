@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
 import { Translation, TranslocoService } from '@jsverse/transloco';
 import { HousingLocation } from '../models';
-import { Observable, Subscription, map, of } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -31,7 +31,7 @@
   "housing-location-9-name": "Столичные безопасные города",
   "housing-location-9-city": "Портленд",
   "housing-location-9-state": "Орегон",
-  "submit-application-log": "Получена заявка на размещение дома: имя: {{firstName}}, lastName: {{lastName}}, email: {{email}}.",
+  "submit-application-log": "Получена заявка на размещение дома: имя: {{firstName}}, фамилия: {{lastName}}, почта: {{email}}.",
   "home": {
     "filter-by-city-placeholder": "Фильтр по городу",
     "filter-by-city-search-button": "Поиск"

@@ -12,7 +12,7 @@
 </section>
 <section class="results">
   <app-housing-location
-    *ngFor="let housingLocation of filteredLocationList"
+    *ngFor="let housingLocation of (filteredLocationList$ | async)"
     [housingLocation]="housingLocation"
   >
   </app-housing-location>

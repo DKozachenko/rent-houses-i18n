@@ -15,12 +15,12 @@ const routeConfig: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home page',
+    title: '...',
   },
   {
     path: 'details/:id',
     component: DetailsComponent,
-    title: 'Home details',
+    title: '...',
   },
 ];
 
@@ -32,6 +32,7 @@ export function initializeApplication() {
   const translateService = inject(TranslateService);
   return () => {
     translateService.setDefaultLang('en');
+    translateService.use('en');
     translateService.addLangs(['es', 'ru']);
     return of(null);
   };

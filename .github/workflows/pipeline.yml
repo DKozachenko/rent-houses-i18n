@@ -11,6 +11,7 @@ on:
 env:
   I18N_PATH: "./apps/rent-houses-i18n"
   TRANSLOCO_PATH: "./apps/rent-houses-transloco"
+  NXG_TRANSLATE_PATH: "./apps/rent-houses-ngx-translate"
 
 jobs:
   check-dictionaries-i18n:
@@ -52,7 +53,7 @@ jobs:
         with:
           node-version: 18
       - name: Check dictionaries
-        working-directory: ./apps/rent-houses-transloco
+        working-directory: ${{ env.TRANSLOCO_PATH }}
         run: npm run check:dictionaries
 
   build-transloco:
@@ -67,4 +68,32 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Build
         working-directory: ${{ env.TRANSLOCO_PATH }}
+        run: npm run build
+
+  check-dictionaries-ngx-translate:
+    name: Check dictionaries (ngx-translate)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Check dictionaries
+        working-directory: ${{ env.NXG_TRANSLATE_PATH }}
+        run: npm run check:dictionaries
+
+  build-ngx-translate:
+    needs: [check-dictionaries-ngx-translate]
+    name: Build (ngx-translate)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ${{ env.NXG_TRANSLATE_PATH }}
+        run: npm ci --ignore-scripts
+      - name: Build
+        working-directory: ${{ env.NXG_TRANSLATE_PATH }}
         run: npm run build
